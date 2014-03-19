@@ -93,8 +93,8 @@ function get_auth () {
 		|awk '{ if ($1 == "HTTP/1.1") printf "%s,", $2 ; if ($1 == "X-Auth-Token:") printf "%s,", $2 ; if ($1 == "X-Server-Management-Url:") printf "%s,", $2 ;}' `
 	EC=`echo $AUTH|awk -F, '{print $1}'`
 	if [[ $EC == "204" ]]; then
-		TOKEN=`echo $AUTH|awk -F, '{print $2}'`
-		MGMTSVR=`echo $AUTH|awk -F, '{print $3}'`
+		TOKEN=`echo $AUTH|awk -F, '{print $3}'`
+		MGMTSVR=`echo $AUTH|awk -F, '{print $2}'`
 	else
 		if [[ $QUIET -eq 1 ]]; then
 			exit $EC
